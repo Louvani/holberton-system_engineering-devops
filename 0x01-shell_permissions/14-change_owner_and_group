@@ -1,2 +1,2 @@
-#!/bin/bash14-change_owner_and_group
+#!/bin/bash
 chown betty:holberton
