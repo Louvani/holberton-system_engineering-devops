@@ -1,2 +1,2 @@
 #!/bin/bash
-c=((WATER+STIR))
+expr (($WATER+$STIR))
