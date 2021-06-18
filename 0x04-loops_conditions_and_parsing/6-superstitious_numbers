@@ -4,7 +4,7 @@
 #    displays 9 and then bad luck from Japan for the 9th loop iteration
 #    displays 17 and then bad luck from Italy for the 17th loop iteration
 
-number=0
+number=1
 while [ $number -le 20 ]; do
 	case $number in
 	4)
