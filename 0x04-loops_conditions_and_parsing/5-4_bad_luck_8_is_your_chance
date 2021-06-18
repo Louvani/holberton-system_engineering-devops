@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Bash script that loops from 1 to 10 and:
+#    displays bad luck for the 4th loop iteration
+#    displays good luck for the 8th loop iteration
+#    displays Holberton School for the other iterations
+
+number=0
+while [ $number -lt 10 ]; do
+	if [ "$number" -eq "3" ];
+		then
+			echo bad luck;
+	elif [ "$number" -eq "7" ];
+		then
+			echo good luck;
+	else
+		echo Holberton School;
+	fi
+	((number++));
+done
