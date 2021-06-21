@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# displays To infinity and beyond indefinitely.
+
+kill -9 "$(pgrep -f 7-highlander)"
