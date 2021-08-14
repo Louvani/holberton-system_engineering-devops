@@ -1,4 +1,4 @@
 # Task3
 exec { 'killmenow':
-  command =>'/etc/bin/pkill kilmenow',
+  command =>'/etc/bin/pkill killmenow',
 }
