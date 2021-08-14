@@ -1,5 +1,5 @@
 # Task3
 exec { 'killmenow':
-  command  =>'/bin/pkill killmenow',
-  provider =>'shell'
+  command  =>'/usr/bin/pkill killmenow',
+  provider =>'---'
 }
