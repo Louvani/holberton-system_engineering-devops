@@ -8,5 +8,5 @@ else
     IP_SERVER=$2
     USER_NAME=$3
     PATH_SSH_KEY=$4
-    scp "$PATH_FILE" "$USER_NAME@$IP_SERVER":~/  -i "$PATH_SSH_KEY" -o StrictHostKeyChecking=no
+    scp -o StrictHostKeyChecking=no -i "$PATH_SSH_KEY" "$PATH_FILE" "$USER_NAME@$IP_SERVER":~/
 fi
