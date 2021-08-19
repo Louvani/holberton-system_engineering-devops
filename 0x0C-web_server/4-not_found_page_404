@@ -12,7 +12,7 @@ sudo sed -i "/server_name _;/a location /redirect_me {\n     rewrite ^/redirect_
 # sudo /etc/init.d/nginx restart
 
 # custom 404 page that contains the string Ceci n'est pas une page.
-sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/err_404.html
-sudo sed -i '/listen 80 default_server/a error_page 404 /err_404.html;' /etc/nginx/sites-available/default
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
+sudo sed -i '/listen 80 default_server/a error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 sudo /etc/init.d/nginx restart
 
