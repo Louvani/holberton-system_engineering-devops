@@ -5,7 +5,7 @@ sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo chmod 777 /var/www/html
 sudo echo "Holberton School" > /var/www/html/index.html
-sudo service nginx start
+# sudo service nginx start
 
 # 1. Install nginx web server
 sudo sed -i "/server_name _;/a location /redirect_me {\n     rewrite ^/redirect_me(.*)$ https://ciudadseva.com/texto/extasis/ permanent; \n}" /etc/nginx/sites-available/default
