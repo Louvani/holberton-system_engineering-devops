@@ -6,16 +6,14 @@ package { 'nginx':
   ensure  => installed,
   require => Exec['apt-get-update'],
 }
-file_line { 'a':
+file_line { 'Add redirection, 301':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
   line    => 'rewrite ^/redirect_me https://ciudadseva.com/texto/extasis/ permanent;',
-  require => Package['nginx'],
 }
 file { '/var/www/html/index.html':
   content => "Holberton School",
-  require => Package['nginx'],
 }
 service { 'nginx':
   ensure  => running,
