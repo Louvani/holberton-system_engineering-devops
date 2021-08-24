@@ -1,19 +1,19 @@
-# puppet manifest creating a custom HTTP header response
-exec { 'apt-get-update':
-  command => '/usr/bin/apt-get update',
+# 2. Add a custom HTTP header with Puppet
+exec { 'apt-get update'
+  command =>'/usr/bin/apt-get update',
 }
 package { 'nginx':
   ensure  => installed,
-  require => Exec['apt-get-update'],
+  require => Exec['apt-get update'],
 }
-file_line { 'a':
+file_line { 'update default':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
-  line    => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  line    => 'rewrite ^/redirect_me https://ciudadseva.com/texto/extasis/ permanent;',
   require => Package['nginx'],
 }
-file_line { 'b':
+file_line { 'update default 2':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
@@ -21,7 +21,7 @@ file_line { 'b':
   require => Package['nginx'],
 }
 file { '/var/www/html/index.html':
-  content => 'Holberton School',
+  content => "Holberton School",
   require => Package['nginx'],
 }
 service { 'nginx':
