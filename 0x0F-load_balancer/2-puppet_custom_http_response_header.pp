@@ -1,10 +1,10 @@
 # 2. Add a custom HTTP header with Puppet
-exec { 'Update'
+exec { 'apt-get update'
   command =>'/usr/bin/apt-get update',
 }
 package { 'nginx':
   ensure  => installed,
-  require => Exec['Update'],
+  require => Exec['apt-get update'],
 }
 file { '/var/www/html/index.html':
   content => "Holberton School",
@@ -28,4 +28,3 @@ service { 'nginx':
   ensure  => running,
   require => Package['nginx'],
 }
-
