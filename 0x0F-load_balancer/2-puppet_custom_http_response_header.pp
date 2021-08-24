@@ -1,33 +1,44 @@
 # 2. Add a custom HTTP header with Puppet
+exec { 'Update'
+	command =>'apt-get update',
+	path    =>'/usr/bin/',
+}
 package { 'nginx':
-	ensure => installed,
+	ensure  => installed,
+	require => exec['Update'],
 }
 file { 'index.html':
 	path    => '/var/www/html/index.html',
 	ensure  => file,
-	content => "Holberton School"
+	content => "Holberton School",
+	require => package['nginx'],
 }
-exec { 'start nginx'
-	command  =>'sudo service nginx start'
-	provider =>'shell'
+file_line { 'update default':
+	path    => '/etc/nginx/sites-available/default',
+	line    => 'location /redirect_me {\n     rewrite ^/redirect_me(.*)$ https://ciudadseva.com/texto/extasis/ permanent; \n}',
+	after   => 'server_name _;',
+	require => package['nginx'],
 }
-exec { 'update default':
-  command => "sudo sed -i '/server_name _;/a location /redirect_me {\n     rewrite ^/redirect_me(.*)$ https://ciudadseva.com/texto/extasis/ permanent; \n}' /etc/nginx/sites-available/default",
-  path    => '/bin',
+file { 'error_404.html':
+	path    => '/var/www/html/error_404.html',
+	line    => 'Ceci n'est pas une page',
+	ensure  => file,
+	content => 'Ceci n'est pas une page',
+	require => package['nginx'],
 }
-exec { 'set page 404'
-	command  =>'sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html'
-	provider =>'shell'
+file_line { 'update default 2':
+	path    => '/etc/nginx/sites-available/default',
+	line    => 'error_page 404 /error_404.html;',
+	after   => 'listen 80 default_server',
+	require => package['nginx'],
 }
-exec { 'update default'
-	command  =>'sudo sed -i '/listen 80 default_server/a error_page 404 /error_404.html;' /etc/nginx/sites-available/default'
-	provider =>'shell'
+file_line { 'update default 3':
+	path    => '/etc/nginx/sites-available/default',
+	line    => 'add_header X-Served-By ${HOSTNAME};',
+	after   => 'listen 80 default_server',
+	require => package['nginx'],
 }
-exec { 'restart nginx'
-	command  =>'sudo service nginx restart'
-	provider =>'shell'
-}
-exec { 'update default add header'
-	command  =>'sed -i "/listen 80 default_server;/a add_header X-Served-By ${HOSTNAME};" /etc/nginx/sites-available/default'
-	provider =>'shell'
+service {
+	ensure  => running,
+	require => package['nginx'],
 }
