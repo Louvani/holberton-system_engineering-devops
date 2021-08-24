@@ -6,14 +6,14 @@ package { 'nginx':
   ensure  => installed,
   require => Exec['apt-get update'],
 }
-file_line { 'update default':
+file_line { 'f':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
   line    => 'rewrite ^/redirect_me https://ciudadseva.com/texto/extasis/ permanent;',
   require => Package['nginx'],
 }
-file_line { 'update default 2':
+file_line { 's':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
