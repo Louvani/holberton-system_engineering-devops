@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# 0. Nginx likes port 80
+sudo sed -i 's/ ipv6only=on//g' /etc/nginx/sites_available/default
+sudo sed -i 's/8080/80/g s/ ipv6only=on//g' /etc/nginx/sites-enabled/default
+sudo service nginx stop
