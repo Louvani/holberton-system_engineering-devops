@@ -2,7 +2,6 @@
 # 1. Install nginx web server
 sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
 
 echo "Holberton School" > /var/www/html/index.html
 # sudo service nginx start
@@ -15,4 +14,3 @@ sudo sed -i "/server_name _;/a location /redirect_me {\n     rewrite ^/redirect_
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
 sudo sed -i '/listen 80 default_server/a error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 sudo /etc/init.d/nginx restart
-
