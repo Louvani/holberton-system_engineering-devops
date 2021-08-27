@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# task0
 
 if [ $# == 1 ]; then
 	DOMAIN="$1"
