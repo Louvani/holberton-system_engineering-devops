@@ -17,10 +17,11 @@ if __name__ == '__main__':
     url2 = 'https://jsonplaceholder.typicode.com/users'
     values = {'id': employee_ID}
     user = requests.get(url2, params=values).json()
-    content = {'2': [
-            {"task": task.get('title'),
-                "completed": task.get('completed'),
-                "username": user[0]['username'],} for task in tasks]}
+    content = {
+            '2': [
+                    {"task": task.get('title'),
+                        "completed": task.get('completed'),
+                        "username": user[0]['username']} for task in tasks]}
 
     file = employee_ID + '.json'
     with open(file, 'w') as jsonfile:
