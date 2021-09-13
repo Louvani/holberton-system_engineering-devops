@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     url = 'https://jsonplaceholder.typicode.com/users'
     users = requests.get(url).json()
-
+    #create dictionary
     content = {}
     for user in users:
         url2 = 'https://jsonplaceholder.typicode.com/todos'
