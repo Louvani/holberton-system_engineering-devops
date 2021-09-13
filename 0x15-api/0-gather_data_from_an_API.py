@@ -17,10 +17,13 @@ if __name__ == '__main__':
     user = requests.get(url2, params=values).json()
 
     done_tasks = []
-    for item in tasks:
-        if item['completed'] is True:
-            done_tasks.append(item['title'])
-    print('Employee {} is done with tasks({}/{}):'.format(
-        user[0]['name'], len(done_tasks), len(tasks)))
-    for title in done_tasks:
-        print('\t {}'.format(title))
+    try:
+        for item in tasks:
+            if item['completed'] is True:
+                done_tasks.append(item['title'])
+        print('Employee {} is done with tasks({}/{}):'.format(
+            user[0]['name'], len(done_tasks), len(tasks)))
+        for title in done_tasks:
+            print('\t {}'.format(title))
+    except IndexError:
+        pass
