@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ 0. Gather data from an API """
 
-from sys import argv
 import requests
+from sys import argv
 
 if __name__ == '__main__':
 
@@ -17,13 +17,10 @@ if __name__ == '__main__':
     user = requests.get(url2, params=values).json()
 
     done_tasks = []
-    try:
-        for item in tasks:
-            if item['completed'] is True:
-                done_tasks.append(item['title'])
-        print('Employee {} is done with tasks({}/{}):'.format(
-            user[0]['name'], len(done_tasks), len(tasks)))
-        for title in done_tasks:
-            print('\t {}'.format(title))
-    except IndexError:
-        pass
+    for item in tasks:
+        if item['completed'] is True:
+            done_tasks.append(item['title'])
+    print('Employee {} is done with tasks({}/{}):'.format(
+        user[0]['name'], len(done_tasks), len(tasks)))
+    for title in done_tasks:
+        print('\t {}'.format(title))
