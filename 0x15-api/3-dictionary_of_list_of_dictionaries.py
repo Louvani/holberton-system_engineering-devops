@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 0. Gather data from an API """
+"""0. Gather data from an API """
 
 import json
 from sys import argv
