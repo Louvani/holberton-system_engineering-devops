@@ -9,11 +9,9 @@ def recurse(subreddit, hot_list=[], after=""):
     '''prints the titles of the first 10 hot posts
     listed for a given subreddit.'''
     if len(hot_list) == 0:
-        url = 'https://www.reddit.com/r/{}/hot.json?limit=1'.format(subreddit)
+        url = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
     else:
-        if after is None:
-            return hot_list
-        url = 'https://www.reddit.com/r/{}/hot.json?limit=1&after={}'.format(
+        url = 'https://www.reddit.com/r/{}/hot.json?limit=10&after={}'.format(
             subreddit, after)
 
     headers = {"User-agent": "lou"}
@@ -22,5 +20,8 @@ def recurse(subreddit, hot_list=[], after=""):
         return None
     else:
         req = response.json()
-        hot_list.append(req['data']['children'][0]['data']['title'])
-        recurse(subreddit, hot_list, req['data']['after'])
+        for item in req['data']['children']:
+            hot_list.append(item['data']['title'])
+        if after is None:
+            return hot_list
+        return recurse(subreddit, hot_list, req['data']['after'])
