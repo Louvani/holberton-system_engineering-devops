@@ -1,4 +1,7 @@
 # debug apache2
+exec { 'restart':
+  command => 'source /etc/apache2/envvars; apache2 -V; service apache2 restart',
+}
 
 file_line { 'change name':
   ensure  => 'present',
